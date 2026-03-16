@@ -14,6 +14,7 @@ public sealed class Service1Client : IService1Client
 
     public async Task<ServiceDataResponse> GetDataAsync(CancellationToken cancellationToken)
     {
+        // Relative path uses the BaseAddress configured in Program.cs.
         var response = await _httpClient.GetFromJsonAsync<ServiceDataResponse>(
             "api/service1/data",
             cancellationToken);
@@ -28,6 +29,7 @@ public sealed class Service1Client : IService1Client
             request,
             cancellationToken);
 
+        // Throw if the downstream API returned non-success.
         httpResponse.EnsureSuccessStatusCode();
 
         var response = await httpResponse.Content.ReadFromJsonAsync<ServiceDataResponse>(

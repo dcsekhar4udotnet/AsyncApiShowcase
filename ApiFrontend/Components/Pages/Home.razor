@@ -72,12 +72,14 @@
 
     private async Task CallGetAsync()
     {
+        // Simple GET to the gateway aggregate endpoint.
         await CallGatewayAsync(client => client.GetFromJsonAsync<AggregateResponse>("api/aggregate"));
     }
 
     private async Task CallPostAsync()
     {
         var request = new AggregateRequest(input);
+        // POSTs input through the gateway and reads the aggregate response.
         await CallGatewayAsync(async client =>
         {
             var httpResponse = await client.PostAsJsonAsync("api/aggregate", request);
@@ -94,6 +96,7 @@
         elapsedMs = null;
 
         var client = HttpClientFactory.CreateClient("Gateway");
+        // Timing is surfaced in the UI to show parallelism.
         var stopwatch = Stopwatch.StartNew();
 
         try

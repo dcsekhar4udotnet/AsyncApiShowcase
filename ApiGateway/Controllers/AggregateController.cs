@@ -18,6 +18,7 @@ public sealed class AggregateController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<AggregateResponse>> Get(CancellationToken cancellationToken)
     {
+        // Fetches both service responses and returns a single aggregate payload.
         var response = await _aggregationService.GetAggregateAsync(cancellationToken);
         return Ok(response);
     }
@@ -27,11 +28,13 @@ public sealed class AggregateController : ControllerBase
         [FromBody] AggregateRequest request,
         CancellationToken cancellationToken)
     {
+        // Basic request validation to keep the sample focused.
         if (request is null || string.IsNullOrWhiteSpace(request.Input))
         {
             return BadRequest("Input is required.");
         }
 
+        // Posts to both services in parallel and returns the combined result.
         var response = await _aggregationService.PostAggregateAsync(request, cancellationToken);
         return Ok(response);
     }

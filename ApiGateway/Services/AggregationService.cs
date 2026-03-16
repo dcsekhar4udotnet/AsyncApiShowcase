@@ -19,6 +19,7 @@ public sealed class AggregationService : IAggregationService
         var service1Task = _service1Client.GetDataAsync(cancellationToken);
         var service2Task = _service2Client.GetDataAsync(cancellationToken);
 
+        // Run both calls in parallel to minimize total wait time.
         await Task.WhenAll(service1Task, service2Task);
 
         return new AggregateResponse(
@@ -36,6 +37,7 @@ public sealed class AggregationService : IAggregationService
         var service1Task = _service1Client.PostDataAsync(serviceRequest, cancellationToken);
         var service2Task = _service2Client.PostDataAsync(serviceRequest, cancellationToken);
 
+        // Run both calls in parallel to minimize total wait time.
         await Task.WhenAll(service1Task, service2Task);
 
         return new AggregateResponse(
