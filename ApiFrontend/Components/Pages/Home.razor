@@ -1,0 +1,125 @@
+@page "/"
+@rendermode InteractiveServer
+@using System.Diagnostics
+@inject IHttpClientFactory HttpClientFactory
+
+<PageTitle>API Aggregate</PageTitle>
+
+<h1>API Aggregator</h1>
+
+<p>Calls the ApiGateway and shows the aggregated response from both backend services.</p>
+
+<div class="mb-3">
+    <label class="form-label" for="inputText">Input for POST</label>
+    <input id="inputText" class="form-control" @bind="input" />
+</div>
+
+<div class="d-flex gap-2 mb-3">
+    <button class="btn btn-primary" @onclick="CallGetAsync" disabled="@isBusy">Call GET</button>
+    <button class="btn btn-outline-primary" @onclick="CallPostAsync" disabled="@isBusy">Call POST</button>
+</div>
+
+@if (isBusy)
+{
+    <div class="alert alert-info">Calling ApiGateway...</div>
+}
+@if (!string.IsNullOrWhiteSpace(error))
+{
+    <div class="alert alert-danger">@error</div>
+}
+@if (response is not null)
+{
+    <div class="alert alert-success">
+        Completed in @elapsedMs ms (expected about 5000 ms).
+    </div>
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@response.Service1.Source</h5>
+                    <div class="card-text">@response.Service1.Message</div>
+                    <div class="text-muted">Delay: @response.Service1.DelayMs ms</div>
+                    @if (!string.IsNullOrWhiteSpace(response.Service1.Input))
+                    {
+                        <div class="text-muted">Input: @response.Service1.Input</div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@response.Service2.Source</h5>
+                    <div class="card-text">@response.Service2.Message</div>
+                    <div class="text-muted">Delay: @response.Service2.DelayMs ms</div>
+                    @if (!string.IsNullOrWhiteSpace(response.Service2.Input))
+                    {
+                        <div class="text-muted">Input: @response.Service2.Input</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private string input = "test";
+    private bool isBusy;
+    private string? error;
+    private AggregateResponse? response;
+    private long? elapsedMs;
+
+    private async Task CallGetAsync()
+    {
+        await CallGatewayAsync(client => client.GetFromJsonAsync<AggregateResponse>("api/aggregate"));
+    }
+
+    private async Task CallPostAsync()
+    {
+        var request = new AggregateRequest(input);
+        await CallGatewayAsync(async client =>
+        {
+            var httpResponse = await client.PostAsJsonAsync("api/aggregate", request);
+            httpResponse.EnsureSuccessStatusCode();
+            return await httpResponse.Content.ReadFromJsonAsync<AggregateResponse>();
+        });
+    }
+
+    private async Task CallGatewayAsync(Func<HttpClient, Task<AggregateResponse?>> call)
+    {
+        isBusy = true;
+        error = null;
+        response = null;
+        elapsedMs = null;
+
+        var client = HttpClientFactory.CreateClient("Gateway");
+        var stopwatch = Stopwatch.StartNew();
+
+        try
+        {
+            var result = await call(client);
+            if (result is null)
+            {
+                error = "ApiGateway returned no data.";
+                return;
+            }
+
+            response = result;
+            elapsedMs = stopwatch.ElapsedMilliseconds;
+        }
+        catch (HttpRequestException ex)
+        {
+            error = $"Request failed: {ex.Message}";
+        }
+        catch (Exception ex)
+        {
+            error = $"Unexpected error: {ex.Message}";
+        }
+        finally
+        {
+            stopwatch.Stop();
+            isBusy = false;
+        }
+    }
+}

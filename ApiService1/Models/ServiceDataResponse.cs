@@ -1,0 +1,8 @@
+namespace ApiService1.Models;
+
+public sealed record ServiceDataResponse(
+    string Source,
+    string Message,
+    string? Input,
+    int DelayMs,
+    DateTimeOffset Timestamp);

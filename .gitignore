@@ -1,0 +1,85 @@
+# .gitignore for .NET projects
+
+# Binaries and build outputs
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# User-specific files
+*.user
+*.suo
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# NuGet packages
+packages/
+*.nupkg
+*.snupkg
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Test results
+TestResults/
+*.trx
+
+# Publish outputs
+publish/
+*.publishproj
+
+# Rider
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# Windows
+[Tt]humbs.db
+*.stackdump
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# JetBrains Rider
+.idea/
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# TeamCity
+_TeamCity*
+
+# DotCover
+*.dotCover
+
+# AppVeyor
+apps/
+
+# Cake
+tools/
+!tools/packages.config
+
+# NuGet
+.nuget/
+
+# ASP.NET Core
+wwwroot/lib/
