@@ -22,7 +22,7 @@ Backend Web API #2. Similar to ApiService1 but with a longer artificial delay so
 ### ApiFrontend
 A small Blazor UI that calls the ApiGateway GET/POST endpoints and shows the aggregated results, including total elapsed time. It’s a simple way to verify the async flow without using a separate API client.
 
-## How It Fits Together
+## The Flow
 1. ApiFrontend (or any HTTP client) calls ApiGateway.
 2. ApiGateway fires requests to ApiService1 and ApiService2 at the same time.
 3. Both services wait their configured delays, then return responses.
@@ -35,8 +35,3 @@ Use the script at the repo root to start all services at once:
 .\run-all.ps1
 ```
 
-Optional: use HTTPS profiles instead of HTTP:
-
-```powershell
-.\run-all.ps1 -Profile https
-```
