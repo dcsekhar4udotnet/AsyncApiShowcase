@@ -1,0 +1,37 @@
+class A
+{
+
+public int a { get; set; }
+
+public int b { get; set; }
+
+}
+
+class B
+{
+
+public const A a;
+
+public B() { a.a = 10; }
+
+}
+
+int main()
+{
+
+B b = new B();
+
+Console.WriteLine("%d %d\n", b.a.a, b.a.b);
+
+return 0;
+
+}
+
+Question: Outline any issues/concerns with the implemented code.
+
+==============================
+Code Analysis:
+There are multiple issues in the code,
+ - We cannot declare class objects as const (as declared in "public const A a")
+ - In line "public B() { a.a = 10; }" a is not initialised and its property being accessed
+ - The Main method declaration should be usually "static void Main()"

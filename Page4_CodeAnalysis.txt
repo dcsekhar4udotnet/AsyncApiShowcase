@@ -1,0 +1,30 @@
+class Animal
+{
+
+public virtual string speak(int x) { return "silence"; }
+
+}
+
+class Cat : Animal
+{
+
+public string speak(int x) { return "meow"; }
+
+}
+
+class Dog : Animal
+{
+
+public string speak(short x) { return "bow-wow"; }
+
+}
+
+Question: Explain why the block below does not emit “bow-wow”:
+
+Animal d = new Dog();
+
+Console.Write(d.speak(0));
+
+==============================
+Code Analysis:
+The code block does not emit "bow-wow" because the speak methods in the subclass are missing the override keyword and thus the base class method is not overriden.
