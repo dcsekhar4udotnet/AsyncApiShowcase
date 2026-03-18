@@ -34,6 +34,7 @@ packages/
 # Test results
 TestResults/
 *.trx
+CoverageReport/
 
 # Publish outputs
 publish/
@@ -80,6 +81,9 @@ tools/
 
 # NuGet
 .nuget/
+
+# Local .NET tool/telemetry data
+.dotnet/.dotnet/TelemetryStorageService/
 
 # ASP.NET Core
 wwwroot/lib/
