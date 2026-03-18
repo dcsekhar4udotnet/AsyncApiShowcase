@@ -2,6 +2,15 @@
 
 This solution is a small, end-to-end example of an async API aggregation flow. A front-end API (ApiGateway) calls two downstream Web APIs in parallel, waits for both, and returns a single combined response. The two backend services include artificial delays so the async behavior is easy to see.
 
+## Tech Stack, Packages, And Tools
+- .NET 9
+- ASP.NET Core Web API
+- Blazor (server-rendered Razor Components)
+- xUnit (`xunit`, `xunit.runner.visualstudio`)
+- `Microsoft.NET.Test.Sdk`
+- Coverlet (`coverlet.collector`)
+- ReportGenerator (`dotnet-reportgenerator-globaltool`)
+
 ## Solution Objectives
 - Demonstrate a Web API that aggregates data from two other Web APIs.
 - Run the downstream calls asynchronously in parallel.
