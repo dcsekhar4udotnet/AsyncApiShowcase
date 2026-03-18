@@ -14,6 +14,21 @@ $resultsDir = Join-Path $repoRoot "TestResults"
 $coverageDir = Join-Path $repoRoot "CoverageReport"
 $combinedReportPath = Join-Path $coverageDir "test-and-coverage.html"
 
+Write-Host "Stopping running app processes (to avoid locked binaries)..."
+$appProcessNames = @("ApiService1", "ApiService2", "ApiGateway", "ApiFrontend")
+foreach ($name in $appProcessNames) {
+    $procs = Get-Process -Name $name -ErrorAction SilentlyContinue
+    if ($procs) {
+        foreach ($proc in $procs) {
+            try {
+                Stop-Process -Id $proc.Id -Force
+            } catch {
+                Write-Warning "Failed to stop process $name (PID $($proc.Id))."
+            }
+        }
+    }
+}
+
 Write-Host "Running tests with coverage..."
 dotnet test $TestProject --collect:"XPlat Code Coverage" --results-directory $resultsDir --logger "trx;LogFileName=TestResults.trx"
 
