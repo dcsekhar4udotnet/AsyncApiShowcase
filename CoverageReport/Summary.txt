@@ -1,22 +1,22 @@
 Summary
-  Generated on: 3/17/2026 - 5:43:25 PM
-  Coverage date: 3/17/2026 - 5:21:08 PM - 3/17/2026 - 5:43:24 PM
-  Parser: MultiReport (10x Cobertura)
+  Generated on: 3/17/2026 - 5:57:16 PM
+  Coverage date: 3/17/2026 - 5:21:08 PM - 3/17/2026 - 5:57:14 PM
+  Parser: MultiReport (16x Cobertura)
   Assemblies: 4
   Classes: 26
   Files: 26
-  Line coverage: 23.7%
-  Covered lines: 79
-  Uncovered lines: 253
+  Line coverage: 42.1%
+  Covered lines: 140
+  Uncovered lines: 192
   Coverable lines: 332
   Total lines: 699
-  Branch coverage: 10.3% (6 of 58)
-  Covered branches: 6
+  Branch coverage: 17.2% (10 of 58)
+  Covered branches: 10
   Total branches: 58
-  Method coverage: 51.2% (40 of 78)
-  Full method coverage: 47.4% (37 of 78)
-  Covered methods: 40
-  Fully covered methods: 37
+  Method coverage: 60.2% (47 of 78)
+  Full method coverage: 56.4% (44 of 78)
+  Covered methods: 47
+  Fully covered methods: 44
   Total methods: 78
 
 ApiFrontend                                       5%
@@ -30,10 +30,10 @@ ApiFrontend                                       5%
   ApiFrontend.Models.ServiceDataResponse         50%
   Program                                         0%
 
-ApiGateway                                     42.8%
-  ApiGateway.Controllers.AggregateController   86.6%
-  ApiGateway.HttpClients.Service1Client           0%
-  ApiGateway.HttpClients.Service2Client           0%
+ApiGateway                                     65.1%
+  ApiGateway.Controllers.AggregateController    100%
+  ApiGateway.HttpClients.Service1Client          70%
+  ApiGateway.HttpClients.Service2Client          45%
   ApiGateway.Models.AggregateRequest            100%
   ApiGateway.Models.AggregateResponse           100%
   ApiGateway.Models.ServiceDataRequest          100%
@@ -41,14 +41,14 @@ ApiGateway                                     42.8%
   ApiGateway.Services.AggregationService        100%
   Program                                         0%
 
-ApiService1                                      30%
-  ApiService1.Controllers.Service1Controller   21.7%
+ApiService1                                      75%
+  ApiService1.Controllers.Service1Controller    100%
   ApiService1.Models.ServiceDataRequest         100%
   ApiService1.Models.ServiceDataResponse        100%
   Program                                         0%
 
-ApiService2                                      30%
-  ApiService2.Controllers.Service2Controller   21.7%
+ApiService2                                      75%
+  ApiService2.Controllers.Service2Controller    100%
   ApiService2.Models.ServiceDataRequest         100%
   ApiService2.Models.ServiceDataResponse        100%
   Program                                         0%

@@ -30,6 +30,19 @@ public sealed class AggregateControllerTests
         Assert.IsType<BadRequestObjectResult>(result.Result);
     }
 
+    [Fact]
+    public async Task Post_WithValidInput_ReturnsOk()
+    {
+        var controller = new AggregateController(new FakeAggregationService());
+
+        var result = await controller.Post(new AggregateRequest("hello"), CancellationToken.None);
+
+        var ok = Assert.IsType<OkObjectResult>(result.Result);
+        var payload = Assert.IsType<AggregateResponse>(ok.Value);
+        Assert.Equal("hello", payload.Service1.Input);
+        Assert.Equal("hello", payload.Service2.Input);
+    }
+
     private sealed class FakeAggregationService : IAggregationService
     {
         public Task<AggregateResponse> GetAggregateAsync(CancellationToken cancellationToken)
