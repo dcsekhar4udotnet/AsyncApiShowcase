@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -20,6 +20,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ApiGateway\ApiGateway.csproj" />
+    <ProjectReference Include="..\ApiService1\ApiService1.csproj" />
+    <ProjectReference Include="..\ApiService2\ApiService2.csproj" />
+    <ProjectReference Include="..\ApiFrontend\ApiFrontend.csproj" />
   </ItemGroup>
 
 </Project>
+

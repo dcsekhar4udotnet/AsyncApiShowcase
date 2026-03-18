@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Tests + Coverage</title>
+  <style>
+    body { font-family: Segoe UI, Arial, sans-serif; margin: 24px; }
+    h1 { margin-bottom: 8px; }
+    h2 { margin-top: 24px; }
+    .summary { display: grid; grid-template-columns: repeat(5, max-content); gap: 8px 16px; }
+    .summary div { padding: 6px 10px; background: #f3f3f3; border-radius: 6px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+    td, th { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
+    th { background: #f3f3f3; position: sticky; top: 0; }
+    .o-Passed { color: #116329; font-weight: 600; }
+    .o-Failed { color: #b42318; font-weight: 600; }
+    .o-Skipped, .o-NotExecuted { color: #b54708; font-weight: 600; }
+    .panel { border: 1px solid #ddd; border-radius: 8px; padding: 12px; }
+    iframe { width: 100%; height: 520px; border: 1px solid #ddd; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Tests + Coverage</h1>
+
+  <h2>Test Summary</h2>
+  <div class="panel">
+    <div class="summary">
+      <div>Total: 9</div>
+      <div>Passed: 9</div>
+      <div>Failed: 0</div>
+      <div>Skipped: 0</div>
+      <div>Duration: </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Class</th><th>Test</th><th>Outcome</th><th>Duration</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>AsyncApiShowcase.Tests.ApiServiceModelTests</td><td>Service1Response_StoresValues</td><td class='o-Passed'>Passed</td><td>00:00:00.0015372</td></tr><tr><td>AsyncApiShowcase.Tests.AggregateControllerTests</td><td>Post_WithMissingInput_ReturnsBadRequest</td><td class='o-Passed'>Passed</td><td>00:00:00.0029016</td></tr><tr><td>AsyncApiShowcase.Tests.AggregationServiceTests</td><td>GetAggregateAsync_ReturnsBothResponses</td><td class='o-Passed'>Passed</td><td>00:00:00.0030455</td></tr><tr><td>AsyncApiShowcase.Tests.AggregateControllerTests</td><td>Get_ReturnsOk</td><td class='o-Passed'>Passed</td><td>00:00:00.6915841</td></tr><tr><td>AsyncApiShowcase.Tests.Service2ControllerTests</td><td>PostData_WithMissingInput_ReturnsBadRequest</td><td class='o-Passed'>Passed</td><td>00:00:00.6916424</td></tr><tr><td>AsyncApiShowcase.Tests.ApiServiceModelTests</td><td>Service2Response_StoresValues</td><td class='o-Passed'>Passed</td><td>00:00:00.6893806</td></tr><tr><td>AsyncApiShowcase.Tests.AggregationServiceTests</td><td>PostAggregateAsync_PassesInputToBothServices</td><td class='o-Passed'>Passed</td><td>00:00:00.6883894</td></tr><tr><td>AsyncApiShowcase.Tests.ApiFrontendModelTests</td><td>AggregateResponse_StoresValues</td><td class='o-Passed'>Passed</td><td>00:00:00.6851661</td></tr><tr><td>AsyncApiShowcase.Tests.Service1ControllerTests</td><td>PostData_WithMissingInput_ReturnsBadRequest</td><td class='o-Passed'>Passed</td><td>00:00:00.6915040</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Coverage Summary</h2>
+  <iframe src="summary.html" title="Coverage Summary"></iframe>
+</body>
+</html>

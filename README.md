@@ -35,3 +35,26 @@ Use the script at the repo root to start all services at once:
 .\run-all.ps1
 ```
 
+## Unit Tests And Coverage
+Unit tests live in `AsyncApiShowcase.Tests` and use xUnit with the .NET test SDK. Code coverage is collected via Coverlet and summarized with ReportGenerator.
+
+### Packages And Tools
+- `xunit`
+- `xunit.runner.visualstudio`
+- `Microsoft.NET.Test.Sdk`
+- `coverlet.collector`
+- `dotnet-reportgenerator-globaltool` (installed as a .NET tool)
+
+### Run Tests And Generate Coverage
+Use the helper script to run tests, collect coverage, and build a combined HTML report:
+
+```powershell
+.\run-coverage.ps1 -OpenReport
+```
+
+Outputs:
+- `CoverageReport\test-and-coverage.html` (combined test results + coverage summary)
+- `CoverageReport\summary.html` (coverage summary only)
+- `CoverageReport\Summary.txt` (coverage summary text)
+
+The report filters out framework and generated code so coverage reflects your assemblies only. You can adjust filters in `run-coverage.ps1` if you want to include or exclude additional assemblies or files.
