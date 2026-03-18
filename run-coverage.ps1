@@ -22,7 +22,18 @@ if (-not $trxPath) {
     Write-Warning "TestResults.trx not found under $resultsDir"
 }
 
-$toolPath = Join-Path $repoRoot ".dotnet\.dotnet\tools\reportgenerator.exe"
+$toolsDir = Join-Path $repoRoot ".dotnet\.dotnet\tools"
+$toolPath = Join-Path $toolsDir "reportgenerator.exe"
+
+if (-not (Test-Path $toolPath)) {
+    if (-not (Test-Path $toolsDir)) {
+        New-Item -ItemType Directory -Path $toolsDir -Force | Out-Null
+    }
+
+    Write-Host "ReportGenerator not found. Installing local tool..."
+    dotnet tool install --tool-path $toolsDir dotnet-reportgenerator-globaltool
+}
+
 if (Test-Path $toolPath) {
     $reportGenerator = $toolPath
 } else {
