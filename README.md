@@ -40,8 +40,22 @@ A small Blazor UI that calls the ApiGateway GET/POST endpoints and shows the agg
 ## Run Everything
 Use the script at the repo root to start all services at once:
 
+Windows (one action, no execution policy prompt):
+
+```powershell
+.\run-all.cmd
+```
+
+PowerShell script alternative (if you prefer it):
+
 ```powershell
 .\run-all.ps1
+```
+
+If your system blocks unsigned scripts, you can unblock just this file once:
+
+```powershell
+Unblock-File .\run-all.ps1
 ```
 
 ## Unit Tests And Coverage
@@ -56,6 +70,14 @@ Unit tests live in `AsyncApiShowcase.Tests` and use xUnit with the .NET test SDK
 
 ### Run Tests And Generate Coverage
 Use the helper script to run tests, collect coverage, and build a combined HTML report:
+
+Windows (one action, no execution policy prompt):
+
+```powershell
+.\run-coverage.cmd -OpenReport
+```
+
+PowerShell script alternative (if you prefer it):
 
 ```powershell
 .\run-coverage.ps1 -OpenReport
